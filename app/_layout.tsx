@@ -1,5 +1,7 @@
 import '../tamagui-web.css'
 
+import { ClerkProvider } from '@clerk/clerk-expo'
+import { tokenCache } from '@clerk/clerk-expo/token-cache'
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { Stack } from 'expo-router'
 import { useColorScheme } from 'react-native'
@@ -12,6 +14,7 @@ export default function RootLayout() {
 
   return (
     // add this
+    <ClerkProvider tokenCache={tokenCache}>
     <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme!}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
@@ -20,5 +23,6 @@ export default function RootLayout() {
         </Stack>
       </ThemeProvider>
     </TamaguiProvider>
+    </ClerkProvider>
   )
 }
