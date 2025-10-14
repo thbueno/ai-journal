@@ -1,0 +1,17 @@
+import { useAuth } from "@clerk/clerk-expo";
+import { Stack } from "expo-router";
+import React from "react";
+import { Spinner } from "tamagui";
+
+export default function Layout() {
+  const { isLoaded, isSignedIn } = useAuth();
+
+  if (!isLoaded) {
+    return <Spinner />;
+  }
+  return (
+    <Stack>
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    </Stack>
+  );
+}
